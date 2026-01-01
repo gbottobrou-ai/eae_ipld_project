@@ -24,7 +24,7 @@ st.divider()
 def load_data():
     data_path = "data/cities_temperatures.csv"
 
-    temps_df = pd.read_csv(data_path)
+    temps_df = pd.read_csv(data_path, index_col="show_id")
 
     if temps_df is not None:
         temps_df["Date"] = pd.to_datetime(temps_df["Date"]).dt.date
@@ -167,14 +167,6 @@ plt.xlabel("Temperature (°C)")  # TODO
 plt.ylabel("Frequency")  # TODO
 
 plt.legend()
-
-
-
-
-
-
-
-
 
 
 
