@@ -24,7 +24,7 @@ st.divider()
 def load_data():
     data_path = "data/cities_temperatures.csv"
 
-    temps_df = pd.read_csv(data_path)
+    temps_df = pd.read_csv(data_path, index_col="show_id")
 
     if temps_df is not None:
         temps_df["Date"] = pd.to_datetime(temps_df["Date"]).dt.date
@@ -150,8 +150,8 @@ if unique_countries_list is not None and len(selected_cities) > 0:
     plt.title("Temperature distribution for the selected cities")
     plt.xlabel("Temperature (°C)")
     plt.ylabel("Frequency")
-    # plt.xlabel()  # TODO
-    # plt.ylabel()  # TODO
+    plt.xlabel("Temperature (°C)")
+    plt.ylabel("Frequency")
 
     plt.legend()
 
