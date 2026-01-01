@@ -120,7 +120,7 @@ if movies_avg_duration_per_year is not None:
     plt.plot(movies_avg_duration_per_year.index,movies_avg_duration_per_year.values)
     plt.title("Average Duration of Movies Across Years")
 
-    st.pyplot(fig)
+    plt.show()
 
 else:
     st.subheader("⚠️ You still need to develop the Ex 2.7.")
