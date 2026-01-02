@@ -61,7 +61,7 @@ def home_page():
 
     - 🤖 Best fit for Arteta Arsenal (on going project)
 
-    - 🏂 read ,video games , music 
+    - 🏂 read ,video games , music , Sport Analysis 
 
     - 📫 How to reach me: gbottobrou@gmail.com , https://www.linkedin.com/in/georges-patrick-brou-bb68b9281/
     
