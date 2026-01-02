@@ -59,7 +59,7 @@ def home_page():
 
     - ❤️ Sport (football , basketball , football US , F1) , Forex 
 
-    - 🤖 Best fit for Arteta Arsenal
+    - 🤖 Best fit for Arteta Arsenal (on going project)
 
     - 🏂 read ,video games , music 
 
