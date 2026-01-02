@@ -1,3 +1,4 @@
+
 import streamlit as st
 import base64
 
@@ -25,7 +26,7 @@ def home_page():
 
 
     # ----- Profile image file -----
-    profile_image_file_path = "profile pic.png"       # TODO: Upload your profile image to the same folder as this script and update this if it has a different name
+    profile_image_file_path = "profile_pic.png"       # TODO: Upload your profile image to the same folder as this script and update this if it has a different name
 
     with open(profile_image_file_path, "rb") as img_file:
         img = "data:image/png;base64," + base64.b64encode(img_file.read()).decode()
@@ -79,3 +80,4 @@ pg = st.navigation([
     st.Page("pages/03_temperatures_dashboard.py", title="Temperatures Dashboard", icon="🌦️"),
 ])
 pg.run()
+
