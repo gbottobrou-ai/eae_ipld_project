@@ -78,39 +78,18 @@ year = cols2[0].number_input("Select a year:", min_year, max_year, 2005)
 
 # TODO: Ex 2.6: For a given year, get the Pandas Series of how many movies and series 
 # combined were made by every country, limit it to the top 10 countries.
-df_year = movies_df.loc[movies_df["release_year"] == year]
-top_10_countries=(
- df_year["country"].value_counts()
-.head(10)
-.reset_index()
-)
-top_10_countries.columns=["country", "count"]
-top_10_countries.index= range(1, len(top_10_countries)+1)
-print(top_10_countries)
+df_year = movies_df[movies_df["release_year"] == year]
 
-# Code to plot the pie chart from your data results
-fig = plt.figure(figsize=(8, 8))
-plt.pie(
-top_10_countries ["count"], 
-labels=top_10_countries["country"],
-autopct="%.2f%%"
-)
-plt.title(f"Top 10 Countries in {year}")
+top_10_countries = df_year["country"].fillna("Unknown").value_counts().head(10)
 
-plt.show()
-
-
-
-# print(top_10_countries)
-if top_10_countries is not None:
+if len(top_10_countries) > 0:
     fig = plt.figure(figsize=(8, 8))
-    plt.pie(top_10_countries, labels=top_10_countries.index, autopct="%.2f%%")
+    plt.pie(top_10_countries.values, labels=top_10_countries.index, autopct="%.2f%%")
     plt.title(f"Top 10 Countries in {year}")
-
     st.pyplot(fig)
-
 else:
-    st.subheader("⚠️ You still need to develop the Ex 2.6.")
+    st.warning("No data for this year.")
+
 
 
 # ----- Line Chart: Avg duration of movies by year -----
@@ -120,22 +99,20 @@ st.header("Avg Duration of Movies by Year")
 
 
 # TODO: Ex 2.7: Make a line chart of the average duration of movies (not TV shows) in minutes for every year across all the years. 
-movies_only=movies_df[movies_df["type"]=="Movie"].copy()
+movies_only = movies_df[movies_df["type"] == "Movie"].copy()
 
-movies_only["minutes"]=movies_only["duration"].apply(lambda x: int(x.strip(" min")))
+movies_only["minutes"] = movies_only["duration"].str.replace(" min", "", regex=False).astype(int)
+
 movies_avg_duration_per_year = movies_only.groupby("release_year")["minutes"].mean()
 
-
-if movies_avg_duration_per_year is not None:
+if len(movies_avg_duration_per_year) > 0:
     fig = plt.figure(figsize=(9, 6))
-
-    # plt.plot(...# TODO: generate the line plot using plt.plot() and the information from movies_avg_duration_per_year (the vertical axes with the minutes value) and its index (the horizontal axes with the years)
-
+    plt.plot(movies_avg_duration_per_year.index, movies_avg_duration_per_year.values)
     plt.title("Average Duration of Movies Across Years")
-
+    plt.xlabel("Release Year")
+    plt.ylabel("Average Duration (minutes)")
     st.pyplot(fig)
-
 else:
-    st.subheader("⚠️ You still need to develop the Ex 2.7.")
+    st.warning("No movie duration data available.")
 
 
